@@ -1,6 +1,7 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Style from '@/views/StyleView.vue'
 import Home from '@/views/HomeView.vue'
+import Index from '@/views/Category/Index.vue'
 
 const routes = [
   {
@@ -12,18 +13,24 @@ const routes = [
     component: Style
   },
   {
-    // Document title tag
-    // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
+    path: '/dashboard',
+    name: 'dashboard',
+    component: Home,
     meta: {
       title: 'Dashboard'
     },
-    path: '/dashboard',
-    name: 'dashboard',
-    component: Home
+  },
+  {
+    path: '/categorias',
+    name: 'category.index',
+    component: Index,
+    meta: {
+      title: 'Dashboard'
+    },
   },
   {
     meta: {
-      title: 'Tables'
+      title: 'Usuários'
     },
     path: '/tables',
     name: 'tables',
@@ -80,7 +87,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
     return savedPosition || { top: 0 }
