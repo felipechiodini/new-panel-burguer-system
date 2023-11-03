@@ -1,9 +1,28 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Style from '@/views/StyleView.vue'
-import Home from '@/views/HomeView.vue'
-import Index from '@/views/Category/Index.vue'
+// import Home from '@/views/HomeView.vue'
+import UserRouters from '@/router/modules/user.js'
+import PhotoRouters from '@/router/modules/photo.js'
+import CategoryRouters from '@/router/modules/category.js'
+import CardRouters from '@/router/modules/card.js'
+import WaiterRouters from '@/router/modules/waiter.js'
+import BannerRouters from '@/router/modules/banner.js'
+import ComboRouters from '@/router/modules/combo.js'
+import ProductRouters from '@/router/modules/product.js'
+import OrderRouters from '@/router/modules/order.js'
+import GeneralRouters from '@/router/modules/general.js'
 
 const routes = [
+  ...GeneralRouters,
+  ...UserRouters,
+  ...CategoryRouters,
+  ...CardRouters,
+  ...WaiterRouters,
+  ...BannerRouters,
+  ...PhotoRouters,
+  ...ProductRouters,
+  ...ComboRouters,
+  ...OrderRouters,
   {
     meta: {
       title: 'Select style'
@@ -12,22 +31,14 @@ const routes = [
     name: 'style',
     component: Style
   },
-  {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: Home,
-    meta: {
-      title: 'Dashboard'
-    },
-  },
-  {
-    path: '/categorias',
-    name: 'category.index',
-    component: Index,
-    meta: {
-      title: 'Dashboard'
-    },
-  },
+  // {
+  //   path: '/dashboard',
+  //   name: 'dashboard',
+  //   component: Home,
+  //   meta: {
+  //     title: 'Dashboard'
+  //   },
+  // },
   {
     meta: {
       title: 'Usuários'

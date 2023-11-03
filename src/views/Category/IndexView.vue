@@ -4,7 +4,7 @@ import LayoutAuthenticated from '@/layouts/LayoutAuthenticated.vue'
 import SectionTitleLineWithButton from '@/components/SectionTitleLineWithButton.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import CardBox from '@/components/CardBox.vue'
-import TableCategories from '@/views/Category/Components/TableCategories.vue'
+import TableCategories from '@/views/Category/components/TableCategories.vue'
 </script>
 
 <template>
