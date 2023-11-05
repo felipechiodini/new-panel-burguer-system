@@ -11,9 +11,11 @@ import ComboRouters from '@/router/modules/combo.js'
 import ProductRouters from '@/router/modules/product.js'
 import OrderRouters from '@/router/modules/order.js'
 import GeneralRouters from '@/router/modules/general.js'
+import CustomerRouters from '@/router/modules/customer.js'
 
 const routes = [
   ...GeneralRouters,
+  ...CustomerRouters,
   ...UserRouters,
   ...CategoryRouters,
   ...CardRouters,
@@ -31,14 +33,6 @@ const routes = [
     name: 'style',
     component: Style
   },
-  // {
-  //   path: '/dashboard',
-  //   name: 'dashboard',
-  //   component: Home,
-  //   meta: {
-  //     title: 'Dashboard'
-  //   },
-  // },
   {
     meta: {
       title: 'Usuários'
@@ -56,12 +50,12 @@ const routes = [
     component: () => import('@/views/FormsView.vue')
   },
   {
+    path: '/perfil',
+    name: 'profile',
+    component: () => import('@/views/ProfileView.vue'),
     meta: {
       title: 'Profile'
     },
-    path: '/profile',
-    name: 'profile',
-    component: () => import('@/views/ProfileView.vue')
   },
   {
     meta: {

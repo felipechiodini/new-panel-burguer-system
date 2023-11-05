@@ -20,6 +20,11 @@ export default [
     label: 'Dashboard'
   },
   {
+    to: '/clientes',
+    label: 'Clientes',
+    icon: mdiTable
+  },
+  {
     to: '/tables',
     label: 'Tables',
     icon: mdiTable

@@ -16,7 +16,7 @@
         <b-textarea id="product-description" rows="5" v-model="product.description"></b-textarea>
       </template>
       <div class="d-flex justify-content-center" v-else>
-        <b-spinner />
+        <!-- <b-spinner /> -->
       </div>
       <template #footer>
         <b-button class="d-flex ml-auto" size="sm" variant="primary" @click="save()">Salvar</b-button>

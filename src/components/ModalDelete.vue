@@ -9,7 +9,7 @@
     </div>
     <div slot="modal-footer">
       <b-button @click="destroy()" :disabled="loading === true" variant="dark">
-        <b-spinner small v-if="loading === true" /> Deletar
+        <!-- <b-spinner small v-if="loading === true" /> Deletar -->
       </b-button>
     </div>
   </b-modal>

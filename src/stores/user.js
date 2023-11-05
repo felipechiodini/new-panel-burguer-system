@@ -1,15 +1,34 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import api from '@/api'
+import router from '@/router'
 
-export const useUserStore = defineStore('user', () => {
-  const token = ref(null)
-
-  function setToken(token) {
-    token.value = token
-  }
-
-  return {
-    setToken,
-    token
-  }
+export const useUserStore = defineStore('user', {
+  state: () => {
+    return {
+      name: null,
+      email: null,
+      cellphone: null,
+      token: null
+    }
+  },
+  actions: {
+    async login({ email, password }) {
+      try {
+        const { data } = await api.post('auth/login', { email, password })
+        this.token = data.access_token
+        router.push({ name: 'customer.index' })
+        this.getMe()
+      } catch (error) {
+        return error
+      }
+    },
+    getMe() {
+      api.get('auth/me').then(({ data }) => {
+        this.name = data.name
+        this.email = data.email
+        this.cellphone = data.cellphone
+      })
+    }
+  },
+  persist: true
 })

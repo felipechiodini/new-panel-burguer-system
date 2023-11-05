@@ -6,8 +6,8 @@
         <b-form-select v-model="params.status" :options="options" text-field="name" value-field="id" />
         <b-button @click="clearFilters()">Limpar</b-button>
       </div>
-      <b-spinner v-if="loading === true"></b-spinner>
-      <card v-else :active="selectedOrder?.id === order.id" @click.native="select(order)" :order="order" v-for="(order, key) in orders" :key="key" />
+      <div v-if="loading === true">Carregando</div>
+      <card v-else :active="selectedOrder?.id === order.id" @click="select(order)" :order="order" v-for="(order, key) in orders" :key="key" />
     </div>
     <manager-content :order="selectedOrder" />
   </div>

@@ -10,17 +10,21 @@ import FormControl from '@/components/FormControl.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import BaseButtons from '@/components/BaseButtons.vue'
 import LayoutGuest from '@/layouts/LayoutGuest.vue'
+import api from '@/api'
+import { useUserStore } from '@/stores/user'
+
+const user = useUserStore()
 
 const form = reactive({
-  login: null,
-  pass: null,
+  email: 'felipechiodinibona@hotmail.com',
+  password: '132567',
   remember: false
 })
 
 const router = useRouter()
 
 const submit = () => {
-  router.push('/dashboard')
+  user.login(form)
 }
 </script>
 
@@ -30,7 +34,7 @@ const submit = () => {
       <CardBox :class="cardClass" is-form @submit.prevent="submit">
         <FormField label="E-mail" help="Por favor entre com seu e-mail">
           <FormControl
-            v-model="form.login"
+            v-model="form.email"
             :icon="mdiAccount"
             name="login"
             autocomplete="username"
@@ -39,7 +43,7 @@ const submit = () => {
 
         <FormField label="Senha" help="Por favor entre com sua senha">
           <FormControl
-            v-model="form.pass"
+            v-model="form.password"
             :icon="mdiAsterisk"
             type="password"
             name="password"
@@ -55,7 +59,7 @@ const submit = () => {
 
         <template #footer>
           <BaseButtons>
-            <BaseButton @click="console.log('dawd')" class="w-full" type="submit" color="info" label="Entrar" />
+            <BaseButton class="w-full" type="submit" color="info" label="Entrar" />
           </BaseButtons>
         </template>
       </CardBox>

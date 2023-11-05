@@ -1,7 +1,5 @@
 import Axios from 'axios'
-// import { useUserStore } from './stores/user'
-
-// const userStore = useUserStore()
+import { useUserStore } from './stores/user'
 
 const service = Axios.create({
   baseURL: import.meta.env.VITE_URL_API,
@@ -12,9 +10,11 @@ const service = Axios.create({
 })
 
 service.interceptors.request.use(config => {
-  // if (userStore.token !== null) {
-  //   config.headers.Authorization = 'Bearer ' + userStore.token
-  // }
+  const user = useUserStore()
+
+  if (user.token !== null) {
+    config.headers.Authorization = `Bearer ${user.token}`
+  }
 
   return config
 }, function (error) {
