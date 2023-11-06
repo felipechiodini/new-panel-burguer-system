@@ -69,6 +69,7 @@ export default [
     icon: mdiViewList,
     menu: [
       {
+        icon: mdiViewList,
         label: 'Item One'
       },
       {

@@ -16,7 +16,7 @@ export const useUserStore = defineStore('user', {
       try {
         const { data } = await api.post('auth/login', { email, password })
         this.token = data.access_token
-        router.push({ name: 'customer.index' })
+        router.push('/')
         this.getMe()
       } catch (error) {
         return error
@@ -28,6 +28,18 @@ export const useUserStore = defineStore('user', {
         this.email = data.email
         this.cellphone = data.cellphone
       })
+    },
+    isAuthenticated() {
+      return this.token !== null
+    },
+    logout() {
+      try {
+        api.post('auth/logout')
+        localStorage.removeItem('user')
+        router.push({ name: 'login' })
+      } catch (error) {
+        console.log(error)
+      }
     }
   },
   persist: true

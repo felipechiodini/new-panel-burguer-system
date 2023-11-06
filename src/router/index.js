@@ -12,19 +12,36 @@ import ProductRouters from '@/router/modules/product.js'
 import OrderRouters from '@/router/modules/order.js'
 import GeneralRouters from '@/router/modules/general.js'
 import CustomerRouters from '@/router/modules/customer.js'
+import { useUserStore } from '@/stores/user'
 
 const routes = [
-  ...GeneralRouters,
-  ...CustomerRouters,
-  ...UserRouters,
-  ...CategoryRouters,
-  ...CardRouters,
-  ...WaiterRouters,
-  ...BannerRouters,
-  ...PhotoRouters,
-  ...ProductRouters,
-  ...ComboRouters,
-  ...OrderRouters,
+  {
+    path: '/',
+    component: () => import('@/layouts/LayoutAuthenticated.vue'),
+    redirect: {
+      name: 'home'
+    },
+    beforeEnter: () => {
+      const user = useUserStore()
+
+      if (user.isAuthenticated() === false) {
+        return '/login'
+      }
+    },
+    children: [
+      ...GeneralRouters,
+      ...CustomerRouters,
+      ...UserRouters,
+      ...CategoryRouters,
+      ...CardRouters,
+      ...WaiterRouters,
+      ...BannerRouters,
+      ...PhotoRouters,
+      ...ProductRouters,
+      ...ComboRouters,
+      ...OrderRouters,
+    ]
+  },
   {
     meta: {
       title: 'Select style'

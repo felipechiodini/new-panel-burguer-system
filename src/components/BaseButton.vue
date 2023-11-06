@@ -25,6 +25,10 @@ const props = defineProps({
     type: String,
     default: null
   },
+  loading: {
+    type: Boolean,
+    default: false
+  },
   to: {
     type: [String, Object],
     default: null
@@ -117,6 +121,7 @@ const componentClass = computed(() => {
     :disabled="disabled"
   >
     <BaseIcon v-if="icon" :path="icon" :size="iconSize" />
-    <span v-if="label" :class="labelClass">{{ label }}</span>
+    <span v-if="loading === true">Carregando...</span>
+    <span v-if="label && loading === false" :class="labelClass">{{ label }}</span>
   </component>
 </template>

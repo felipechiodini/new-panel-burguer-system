@@ -6,8 +6,10 @@ export default [{
     path: '/categorias',
     name: 'category.index',
     component: Index,
-    label: 'Categorias',
-    menu: true
+    meta: {
+      label: 'Categorias',
+      menu: true
+    }
   },
   {
     path: '/categoria/novo',

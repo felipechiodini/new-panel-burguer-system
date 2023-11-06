@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { mdiAccount, mdiAsterisk } from '@mdi/js'
 import SectionFullScreen from '@/components/SectionFullScreen.vue'
@@ -23,8 +23,12 @@ const form = reactive({
 
 const router = useRouter()
 
-const submit = () => {
-  user.login(form)
+const loading = ref(false)
+
+const submit = async () => {
+  loading.value = true
+  await user.login(form)
+  loading.value = false
 }
 </script>
 
@@ -59,7 +63,7 @@ const submit = () => {
 
         <template #footer>
           <BaseButtons>
-            <BaseButton class="w-full" type="submit" color="info" label="Entrar" />
+            <BaseButton :loading="loading" class="w-full" type="submit" color="info" label="Entrar" />
           </BaseButtons>
         </template>
       </CardBox>

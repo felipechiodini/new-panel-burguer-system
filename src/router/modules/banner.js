@@ -6,8 +6,10 @@ export default [{
     path: '/banners',
     name: 'banner.index',
     component: Index,
-    label: 'Banners',
-    menu: true
+    meta: {
+      label: 'Banners',
+      menu: true
+    }
   },
   {
     path: '/banners/novo',

@@ -6,8 +6,10 @@ export default [{
     path: '/clientes',
     name: 'customer.index',
     component: Index,
-    label: 'Clientes',
-    menu: true
+    meta: {
+      label: 'Clientes',
+      menu: true
+    }
   },
   {
     path: '/clientes/novo',

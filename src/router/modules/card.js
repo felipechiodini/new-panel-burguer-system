@@ -6,8 +6,10 @@ export default [{
     path: '/comandas',
     name: 'card.index',
     component: Index,
-    label: 'Comandas',
-    menu: true
+    meta: {
+      label: 'Comandas',
+      menu: true
+    }
   },
   {
     path: '/comandas/novo',

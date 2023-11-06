@@ -6,8 +6,10 @@ export default [{
     path: '/combos',
     name: 'combo.index',
     component: Index,
-    label: 'Combos',
-    menu: true
+    meta: {
+      label: 'Combos',
+      menu: true
+    }
   },
   {
     path: '/combos/novo',

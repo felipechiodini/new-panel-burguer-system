@@ -5,7 +5,9 @@ export default [{
     path: '/gerenciador-de-pedidos',
     name: 'order.manager',
     component: Manager,
-    label: 'Gerenciador de Pedidos',
-    menu: true
+    meta: {
+      label: 'Gerenciador de Pedidos',
+      menu: true
+    }
   }
 ]

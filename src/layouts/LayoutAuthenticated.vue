@@ -1,8 +1,8 @@
 <script setup>
 import { mdiForwardburger, mdiBackburger, mdiMenu } from '@mdi/js'
-import { ref } from 'vue'
+import { computed, onBeforeMount, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import menuAside from '@/menuAside.js'
+// import menuAside from '@/menuAside.js'
 import menuNavBar from '@/menuNavBar.js'
 import { useDarkModeStore } from '@/stores/darkMode.js'
 import BaseIcon from '@/components/BaseIcon.vue'
@@ -11,12 +11,25 @@ import NavBar from '@/components/NavBar.vue'
 import NavBarItemPlain from '@/components/NavBarItemPlain.vue'
 import AsideMenu from '@/components/AsideMenu.vue'
 import FooterBar from '@/components/FooterBar.vue'
+import { useUserStore } from '@/stores/user'
 
 const layoutAsidePadding = 'xl:pl-60'
+
+const user = useUserStore()
 
 const darkModeStore = useDarkModeStore()
 
 const router = useRouter()
+
+const menuAside = computed(() => {
+  return router.getRoutes().filter(route => route.meta.menu === true).map(route => {
+    return {
+      to: route.path,
+      icon: route.meta.icon,
+      label: route.meta.label
+    }
+  })
+})
 
 const isAsideMobileExpanded = ref(false)
 const isAsideLgActive = ref(false)
@@ -32,7 +45,7 @@ const menuClick = (event, item) => {
   }
 
   if (item.isLogout) {
-    //
+    user.logout()
   }
 }
 </script>
@@ -61,9 +74,6 @@ const menuClick = (event, item) => {
         <NavBarItemPlain display="hidden lg:flex xl:hidden" @click.prevent="isAsideLgActive = true">
           <BaseIcon :path="mdiMenu" size="24" />
         </NavBarItemPlain>
-        <NavBarItemPlain use-margin>
-          <FormControl placeholder="Search (ctrl+k)" ctrl-k-focus transparent borderless />
-        </NavBarItemPlain>
       </NavBar>
       <AsideMenu
         :is-aside-mobile-expanded="isAsideMobileExpanded"
@@ -72,7 +82,7 @@ const menuClick = (event, item) => {
         @menu-click="menuClick"
         @aside-lg-close-click="isAsideLgActive = false"
       />
-      <slot />
+      <router-view></router-view>
       <FooterBar>
 
       </FooterBar>
